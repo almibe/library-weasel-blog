@@ -6,10 +6,6 @@ package org.libraryweasel.notebook
 
 import org.apache.felix.dm.DependencyActivatorBase
 import org.apache.felix.dm.DependencyManager
-import org.libraryweasel.music.abc.*
-import org.libraryweasel.servo.Component
-import org.libraryweasel.servo.LibraryWeaselComponentRegistrar
-import org.libraryweasel.web.api.WebEntryPoint
 import org.osgi.framework.BundleContext
 
 class Activator : DependencyActivatorBase() {
