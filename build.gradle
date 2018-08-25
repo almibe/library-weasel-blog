@@ -28,5 +28,6 @@ dependencies {
 
 bundle {
     instruction 'Import-Package', '*'
+    instruction 'Export-Package', 'org.libraryweasel.notebook.api'
     instruction 'Bundle-Activator', 'org.libraryweasel.notebook.Activator'
 }
