@@ -43,7 +43,6 @@ class SectionTypeService: WebRoute {
         }
     }
 
-
     fun addSectionType(sectionType: SectionType) {
         sections.add(sectionType)
     }

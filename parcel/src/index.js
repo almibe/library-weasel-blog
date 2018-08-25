@@ -1,23 +1,7 @@
-import { h, app } from 'hyperapp'
+import riot from 'riot'
 import axios from 'axios'
 import page from 'page'
 import 'bulma/css/bulma.css'
+import './tags'
 
-const state = {
-  title: "New Notebook",
-  sections: []
-}
-
-const actions = {
-}
-
-const view = (state, actions) => (
-  <div id="app" oncreate={ () => mounted() }>
-  </div>
-)
-
-app(state, actions, view, document.body)
-
-function mounted() {
-
-}
+riot.mount('app')
