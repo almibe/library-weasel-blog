@@ -8,4 +8,6 @@ interface SectionType {
     val typeName: String
     val displayName: String
     val description: String
+    val elementName: String
+    val path: String
 }
