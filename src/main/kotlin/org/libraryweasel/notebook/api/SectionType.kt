@@ -4,9 +4,8 @@
 
 package org.libraryweasel.notebook.api
 
-interface SectionSupport {
+interface SectionType {
     val typeName: String
     val displayName: String
     val description: String
-    fun loadSection(id: String): Section
 }

@@ -4,8 +4,6 @@
 
 package org.libraryweasel.notebook.api
 
-data class Notebook(val id: String, val owner: String, val title: String, val pages: MutableList<Page>)
-
-data class Page(val id: String, val title: String, val sections: MutableList<Section>)
+data class Notebook(val id: String, val owner: String, val title: String, val sections: MutableList<Section>)
 
 data class Section(val id: String, val sectionType: String, val elementName: String, val attributes: MutableMap<String, String>)
