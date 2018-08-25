@@ -15,6 +15,8 @@ class Activator : DependencyActivatorBase() {
     override fun init(context: BundleContext, manager: DependencyManager) {
         val registrar = LibraryWeaselComponentRegistrar(manager)
         registrar.register(NewNotebookEntryPoint::class.java)
+        registrar.register(NotebookPlugin::class.java)
+        registrar.register(NotebookStaticResources::class.java)
     }
 
     override fun destroy(context: BundleContext, manager: DependencyManager) {

@@ -31,3 +31,17 @@ bundle {
     instruction 'Export-Package', 'org.libraryweasel.notebook.api'
     instruction 'Bundle-Activator', 'org.libraryweasel.notebook.Activator'
 }
+
+//JS Code
+task parcel(type: Exec) {
+    workingDir "parcel"
+    commandLine "npm", "run", "build"
+}
+
+task copyParcel(type: Copy) {
+    from 'parcel/dist'
+    into 'build/resources/main/webroot'
+}
+
+tasks.jar.dependsOn(copyParcel)
+tasks.copyParcel.dependsOn(parcel)

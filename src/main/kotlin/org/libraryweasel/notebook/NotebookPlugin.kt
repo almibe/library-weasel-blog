@@ -4,3 +4,20 @@
 
 package org.libraryweasel.notebook
 
+import org.libraryweasel.notebook.api.SectionSupport
+import org.libraryweasel.servo.Callback
+import org.libraryweasel.servo.Component
+
+@Component
+@Callback(SectionSupport::class)
+class NotebookPlugin {
+    private val sections = mutableListOf<SectionSupport>()
+
+    fun addSectionSupport(sectionSupport: SectionSupport) {
+        sections.add(sectionSupport)
+    }
+
+    fun removeSectionSupport(sectionSupport: SectionSupport) {
+        sections.remove(sectionSupport)
+    }
+}
