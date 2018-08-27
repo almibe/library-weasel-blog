@@ -27,7 +27,8 @@
     "skatejs": "^5.2.3"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.0.0",
+    "babel-loader": "^8.0.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
