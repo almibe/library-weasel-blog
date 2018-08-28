@@ -4,6 +4,8 @@
 
 package org.libraryweasel.notebook.api
 
-data class Notebook(val id: String, val owner: String, val title: String, val pages: MutableList<Page>)
-
-data class Page(val id: String, val title: String, val content: String)
+interface NotebookManager {
+    fun addNotebook(owner: String, title: String, content: String)
+    fun removeNotebook(id: String)
+    fun updateNotebook(id: String, owner: String, title: String, content: String)
+}

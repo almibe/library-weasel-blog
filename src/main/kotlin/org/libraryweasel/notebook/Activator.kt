@@ -17,6 +17,7 @@ class Activator : DependencyActivatorBase() {
         registrar.register(NewNotebookEntryPoint::class.java)
         registrar.register(SectionTypeService::class.java)
         registrar.register(NotebookStaticResources::class.java)
+        registrar.register(XodusNotebookManager::class.java)
     }
 
     override fun destroy(context: BundleContext, manager: DependencyManager) {
