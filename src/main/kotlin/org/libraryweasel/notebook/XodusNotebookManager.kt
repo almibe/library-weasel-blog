@@ -5,6 +5,7 @@
 package org.libraryweasel.notebook
 
 import org.libraryweasel.notebook.api.Notebook
+import org.libraryweasel.notebook.api.NotebookInfo
 import org.libraryweasel.notebook.api.NotebookManager
 import org.libraryweasel.servo.Component
 import org.libraryweasel.servo.Service
@@ -49,14 +50,27 @@ class XodusNotebookManager: NotebookManager {
         }
     }
 
-    override fun userNotebooks(owner: String): List<Notebook> {
+    override fun userNotebooks(owner: String): List<NotebookInfo> {
         return entityStore.instance.computeInTransaction {
             val result = it.find(entityType, "owner", owner)
             result.map { entity ->
-                val owner = entity.getProperty("owner") as String
                 val title = entity.getProperty("title") as String
-                val content = entity.getProperty("content") as String
-                Notebook(entity.id.localId, owner, title, content)
+                NotebookInfo(entity.id.localId, owner, title)
+            }
+        }
+    }
+
+    override fun readNotebook(owner: String, id: Long): Notebook {
+        return entityStore.instance.computeInTransaction {
+            val result = it.find(entityType, "owner", owner)
+            val resultId = it.findIds(entityType, id, id)
+            val finalResult = result.intersect(resultId).first
+            if (finalResult != null) {
+                    val title = finalResult.getProperty("title") as String
+                    val content = finalResult.getProperty("content") as String
+                    Notebook(finalResult.id.localId, owner, title, content)
+            } else {
+                throw RuntimeException("Notebook not found. $owner - $id")
             }
         }
     }
