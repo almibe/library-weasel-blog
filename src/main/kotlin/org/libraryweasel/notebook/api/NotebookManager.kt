@@ -6,6 +6,6 @@ package org.libraryweasel.notebook.api
 
 interface NotebookManager {
     fun addNotebook(owner: String, title: String, content: String)
-    fun removeNotebook(id: String)
-    fun updateNotebook(id: String, owner: String, title: String, content: String)
+    fun removeNotebook(id: Long)
+    fun updateNotebook(id: Long, owner: String, title: String, content: String)
 }

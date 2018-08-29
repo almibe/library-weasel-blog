@@ -6,19 +6,45 @@ package org.libraryweasel.notebook
 
 import org.libraryweasel.notebook.api.NotebookManager
 import org.libraryweasel.servo.Component
+import org.libraryweasel.servo.Service
+import org.libraryweasel.xodus.api.EntityStoreInstanceManager
 
 @Component(NotebookManager::class)
 class XodusNotebookManager: NotebookManager {
+    @Service @Volatile
+    lateinit var entityStore: EntityStoreInstanceManager
+    private val entityType = "lw.notebook"
+
     override fun addNotebook(owner: String, title: String, content: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        entityStore.instance.computeInTransaction {
+            val entity = it.newEntity(entityType)
+            entity.setProperty("owner", owner)
+            entity.setProperty("title", title)
+            entity.setProperty("content", content)
+            true
+        }
     }
 
-    override fun removeNotebook(id: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun removeNotebook(id: Long) {
+        entityStore.instance.computeInTransaction {
+            val result = it.findIds(entityType, id, id)
+            if (!result.isEmpty) {
+                result.first!!.delete()
+            }
+            true
+        }
     }
 
-    override fun updateNotebook(id: String, owner: String, title: String, content: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun updateNotebook(id: Long, owner: String, title: String, content: String) {
+        entityStore.instance.computeInTransaction {
+            val result = it.findIds(entityType, id, id)
+            if (!result.isEmpty) {
+                val entity = result.first!!
+                entity.setProperty("owner", owner)
+                entity.setProperty("title", title)
+                entity.setProperty("content", content)
+            }
+            true
+        }
     }
-
 }
