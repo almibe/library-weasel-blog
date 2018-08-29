@@ -4,6 +4,7 @@
 
 package org.libraryweasel.notebook
 
+import org.libraryweasel.notebook.api.Notebook
 import org.libraryweasel.notebook.api.NotebookManager
 import org.libraryweasel.servo.Component
 import org.libraryweasel.servo.Service
@@ -45,6 +46,18 @@ class XodusNotebookManager: NotebookManager {
                 entity.setProperty("content", content)
             }
             true
+        }
+    }
+
+    override fun userNotebooks(owner: String): List<Notebook> {
+        return entityStore.instance.computeInTransaction {
+            val result = it.find(entityType, "owner", owner)
+            result.map { entity ->
+                val owner = entity.getProperty("owner") as String
+                val title = entity.getProperty("title") as String
+                val content = entity.getProperty("content") as String
+                Notebook(entity.id.localId, owner, title, content)
+            }
         }
     }
 }

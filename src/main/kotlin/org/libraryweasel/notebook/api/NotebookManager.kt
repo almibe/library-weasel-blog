@@ -4,8 +4,11 @@
 
 package org.libraryweasel.notebook.api
 
+data class Notebook(val id: Long, val owner: String, val title: String, val content: String)
+
 interface NotebookManager {
     fun addNotebook(owner: String, title: String, content: String)
     fun removeNotebook(id: Long)
     fun updateNotebook(id: Long, owner: String, title: String, content: String)
+    fun userNotebooks(owner: String): List<Notebook>
 }
