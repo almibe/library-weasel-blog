@@ -1,17 +1,32 @@
-import { props, withComponent } from 'skatejs';
+import { withComponent } from 'skatejs';
 import withPreact from '@skatejs/renderer-preact';
 import { h } from 'preact';
 
 const Component = withComponent(withPreact());
 
 class NotebookApp extends Component {
-  static get props() {
-    return {
-      name: props.string
-    }
-  }
   render() {
-    return <span>Hello, world!</span>;
+    return (
+      <div class="section">
+        <div class="container">
+          <h1>New Notebook</h1>
+          <form>
+            <div class="field">
+              <label class="label">Title</label>
+              <div class="control">
+                <input class="input" type="text" name="title" />
+              </div>
+              <div class="field">
+                <label class="label">Content</label>
+                <div class="control">
+                  <textarea class="textarea" name="content"></textarea>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    )
   }
 }
 
@@ -20,27 +35,3 @@ function init() {
 }
 
 export { init }
-
-//<app>
-//  <div id="app">
-//    <div class="navbar">
-//      <div class="container">
-//        <a role="button" id="view">View</a> |
-//        <a role="button" id="edit">Edit</a> |
-//        <a href="/">Home</a>
-//      </div>
-//    </div>
-//  </div>
-//
-//  <script>
-//    const state = {
-//      title: "New Notebook",
-//      sections: [],
-//      inEditMode: false
-//    }
-//
-//
-//  </script>
-//
-//
-//</app>
